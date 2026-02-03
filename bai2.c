@@ -13,11 +13,24 @@
 #include <stdio.h>
 
 // Tạo hàm
+void tinhNamNhuan(int year)
+{
+    if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
+    {
+        printf("%d la nam nhuan\n", year);
+    }
+    else
+    {
+        printf("%d khong la nam nhuan\n", year);
+    }
+}
 
 int main()
 {
+    int year = 2022;
 
     // //Gọi hàm trong hàm main
+    tinhNamNhuan(year);
 
     return 0;
 }
