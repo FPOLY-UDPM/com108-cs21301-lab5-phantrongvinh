@@ -13,35 +13,24 @@ void phuongTrinhBac1(float a, float b, char *x)
     {
         if (b == 0)
         {
-            *x = "VSN";
+            sprintf(x, "vo so nghiem");
         }
         else
         {
-            *x = "VN";
+            sprintf(x, "vo nghiem");
         }
     }
     else
     {
-        *x = "CN";
+        float rs = -b / a;
+        sprintf(x, "co nghiem la %.2f", rs);
     }
 }
 
 void main()
 {
     float a = 10, b = 20;
-    char x;
-    phuongTrinhBac1(a, b, &x);
-    if (x == "VSN")
-    {
-        printf("Phuong trinh vo so nghiem\n");
-    }
-    else if (x == "VN")
-    {
-        printf("Phuong trinh vo nghiem\n");
-    }
-    else
-    {
-        float rs = -b / a;
-        printf("Phuong trinh co nghiem: %.2f\n", rs);
-    }
+    char x[100];
+    phuongTrinhBac1(a, b, x);
+    printf("Phuong trinh %.2fx + %.2f = 0 %s\n", a, b, x);
 }
