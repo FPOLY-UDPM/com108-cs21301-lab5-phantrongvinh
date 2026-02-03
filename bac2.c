@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <math.h>
 
-void phuongTrinhBac2(float a, float b, float c, int *x, float *delta)
+void phuongTrinhBac2(float a, float b, float c, char *x) //, float *delta)
 {
     if (a == 0)
     {
@@ -15,68 +15,73 @@ void phuongTrinhBac2(float a, float b, float c, int *x, float *delta)
         {
             if (c == 0)
             {
-                *x = 0;
+                sprintf(x, "phuong trinh vo so nghiem\n");
             }
             else
             {
-                *x = -1;
+                sprintf(x, "phuong trinh vo nghiem\n");
             }
         }
         else
         {
-            *x = 1;
+            float rs = -c / b;
+            sprintf(x, "phuong trinh co nghiem: %.2f\n", rs);
         }
     }
     else
     {
-        *delta = b * b - 4 * a * c;
-        if (*delta == 0)
+        float delta = b * b - 4 * a * c;
+        if (delta == 0)
         {
-
-            *x = 11;
+            float rs = -c / b;
+            sprintf(x, "phuong trin co nhiem kep: %.2f\n", rs);
         }
-        else if (*delta < 0)
+        else if (delta < 0)
         {
-            *x = -1;
+            sprintf(x, "phuong trinh vo nghiem\n");
         }
         else
         {
-            *x = 2;
+            float rs1 = (-b + sqrt(delta)) / (2 * a);
+            float rs2 = (-b - sqrt(delta)) / (2 * a);
+            sprintf(x, "phuong trinh co 2 nghiem: %.2f va %.2f\n", rs1, rs2);
         }
     }
 }
 
 void main()
 {
-    float a = 4, b = 2, c = 1, delta = 0;
-    float rs;
-    int x;
-    phuongTrinhBac2(a, b, c, &x, &delta);
-    switch (x)
-    {
-    case -1:
-        printf("phuong trinh vo nghiem\n");
-        break;
+    float a = 2, b = 4, c = 1, delta = 0;
+    // float rs;
+    char x[100];
+    phuongTrinhBac2(a, b, c, x);
+    printf("%s", x);
 
-    case 0:
-        printf("phuong trinh vo so nghiem\n");
-        break;
+    // switch (x)
+    // {
+    // case -1:
+    //     printf("phuong trinh vo nghiem\n");
+    //     break;
 
-    case 1:
-        rs = -c / b;
-        printf("phuong trinh co nghiem: %.2f\n", rs);
-        break;
-    case 11:
-        rs = -b / (2 * a);
-        printf("phuong trin co nhiem kep: %.2f\n", rs);
-        break;
-    case 2:
-        float rs1 = (-b + sqrt(delta)) / (2 * a);
-        float rs2 = (-b - sqrt(delta)) / (2 * a);
-        printf("phuong trinh co 2 nghiem: %.2f va %.2f\n", rs1, rs2);
-        break;
+    // case 0:
+    //     printf("phuong trinh vo so nghiem\n");
+    //     break;
 
-    default:
-        break;
-    }
+    // case 1:
+    //     rs = -c / b;
+    //     printf("phuong trinh co nghiem: %.2f\n", rs);
+    //     break;
+    // case 11:
+    //     rs = -b / (2 * a);
+    //     printf("phuong trin co nhiem kep: %.2f\n", rs);
+    //     break;
+    // case 2:
+    //     float rs1 = (-b + sqrt(delta)) / (2 * a);
+    //     float rs2 = (-b - sqrt(delta)) / (2 * a);
+    //     printf("phuong trinh co 2 nghiem: %.2f va %.2f\n", rs1, rs2);
+    //     break;
+
+    // default:
+    //     break;
+    // }
 }
